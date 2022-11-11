@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsLongestWordGame</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="text-center p-5">
+      <h1>Rails Longest Word Game</h1>
+      <div class="mx-auto d-flex flex-row justify-content-around" style="width: 600px;">
+        <% @letters.each do |l| %>
+          <div class="p-3 btn btn-primary m-2 font-weight-bold"> <%= l %> </div>
+        <% end %>
+      </div>
+      <form action="/score" method="POST" data-turbo="false">
+        <p class="p-3">What's your answer?</p>
+        <input type="text" name="word"><br><br>
+        <input type="submit" value="Answer">
+        <input type="hidden" name ="letters" value="<%= @letters %>">
+      </form>
+      <%# <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      </div>
+    <%= yield %>
+  </body>
+</html>
